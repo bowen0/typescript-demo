@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import HooksApp from './examples/Hooks'
+import HooksContext from './examples/HooksContext'
+import PortalsApp from './examples/Portals'
+import TodoApp from './components/todos/Search'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HooksApp message="Test"/>
+      <HooksContext />
+      <PortalsApp />
+      <div id="modal-root">protal</div>
+      <TodoApp />
     </div>
   );
 }

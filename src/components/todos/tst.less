@@ -1,0 +1,66 @@
+:global {
+  .todo-container {
+    width: 400px;
+    box-shadow: 3px 3px 3px #ccc;
+    border: 1px solid #ccc;
+    .todo-header {
+
+    }
+    .option-item {
+      width: 200px;
+      text-align: left;
+      &:hover > .icon-clear {
+        visibility: visible;
+      }
+      &-text {
+        display: inline-block;
+        width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .icon {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border-radius: 16px;
+          border: 1px solid green;
+        }
+      }
+      &-complete {
+        .option-item-text {
+          text-decoration-line: line-through;
+          color: #333;
+        }
+        .icon::after {
+          position: absolute;
+          display: inline-block;
+          content: '';
+          width: 10px;
+          height: 6px;
+          background-color: transparent;
+          border-left: 1px solid red;
+          border-bottom: 1px solid red;
+          transform: translate(2px, 3px) rotate(-48deg);
+        }
+      }
+      .icon-clear {
+        display: inline-block;
+        visibility: hidden;
+        width: 16px;
+        height: 16px;
+        /* border: 1px solid red; */
+        border-radius: 8px;
+        &::after,
+        &::before {
+          position: absolute;
+          display: inline-block;
+          content: '';
+          width: 16px;
+          height: 1px;
+          background: red;
+          transform: translate(0, 8px) rotate(-48deg);
+        }
+      }
+    }
+  }
+}
