@@ -1,7 +1,8 @@
 import React from 'react';
+import c from 'classnames';
 import OptionItem from './OptionItem';
 import { IToDo, IToDoItem } from './type';
-import './tst.less';
+import './tst.scss';
 
 let count = 100;
 const Todo = () => {
@@ -14,20 +15,24 @@ const Todo = () => {
   const handleOptionChange = (index: number, item: IToDoItem) => {
     const options = state.options;
     options[index] = item;
-    console.log('index: ', index)
-    console.log('options: ', options)
     setState({
       ...state,
       options: [...options],
     });
   };
-
+  const arrowCls = c('prev-arrow-icon', {
+    Open: state.isOpen,
+    Closed: !state.isOpen,
+  });
   return (
     <div className="todo-container">
       <div className="todo-header">
-        <i>{state.isOpen ? 'Closed' : 'Open'}</i>
+        <button className="prev-arrow-btn">
+          <span className={arrowCls} />
+        </button>
         <input
           type="text"
+          className="todo-header-input"
           placeholder="What needs to be done?"
           value={state.value}
           onChange={(e) => {
@@ -54,15 +59,20 @@ const Todo = () => {
             }
           }}
         />
+        <button className="next-clear-btn">
+          <span className="next-clear-icon" />
+        </button>
       </div>
-      {state.options.map((props, index) => (
-        <OptionItem
-          {...props}
-          onChange={(item) => {
-            handleOptionChange(index, item)
-          }}
-        />
-      ))}
+      <div className="options-container">
+        {state.options.map((props, index) => (
+          <OptionItem
+            {...props}
+            onChange={(item) => {
+              handleOptionChange(index, item);
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 };

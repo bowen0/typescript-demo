@@ -38,6 +38,10 @@ const OptionItem = (props: IToDoItem) => {
   const refObj = React.createRef<HTMLDivElement>();
 
   const showInput = editable && status === 'active';
+
+  const optionTextCls = c('option-item-text', {
+    'input': showInput
+  })
   return (
     <div
       className={optionCls}
@@ -55,18 +59,20 @@ const OptionItem = (props: IToDoItem) => {
         });
       }}
     >
-      <i
-        className={iconCls}
-        onClick={() => {
-          let item = { ...props };
-          item.status = status === 'complete' ? 'active' : 'complete';
-          if (onChange) {
-            console.log('item: ', item);
-            onChange(item);
-          }
-        }}
-      />
-      <div className="option-item-text" ref={refObj}>
+      <button className="prev-checkbox-btn">
+        <span
+          className={iconCls}
+          onClick={() => {
+            let item = { ...props };
+            item.status = status === 'complete' ? 'active' : 'complete';
+            if (onChange) {
+              console.log('item: ', item);
+              onChange(item);
+            }
+          }}
+        />
+      </button>
+      <div className={optionTextCls} ref={refObj}>
         {showInput ? (
           <input
             type="text"
@@ -83,7 +89,9 @@ const OptionItem = (props: IToDoItem) => {
           props.value
         )}
       </div>
-      <i className="icon-clear" />
+      <button className="next-clear-btn">
+        <span className="next-clear-icon" />
+      </button>
     </div>
   );
 };

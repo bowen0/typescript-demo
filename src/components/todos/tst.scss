@@ -1,0 +1,218 @@
+$border-color: rgba(0, 0, 0, 0.35);
+$border-color-dark: rgba(0, 0, 0, 0.9);
+.todo-container {
+  width: 400px;
+  margin: 16px;
+  box-shadow: 3px 3px 3px #ccc;
+  border: 1px solid #ccc;
+  .todo-header {
+    height: 46px;
+    width: 100%;
+    display: inline-flex;
+    box-shadow: 0px 1px 3px #ccc;
+    button {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      min-width: 2rem;
+      cursor: pointer;
+      outline: none;
+      align-self: center;
+      &.prev-arrow-btn {
+        margin-left: 16px;
+      }
+      &.next-clear-btn {
+        margin: 0px 16px;
+      }
+      .prev-arrow-icon {
+        position: relative;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        line-height: inherit;
+        color: $border-color;
+        transition: color 0.2s;
+        // &:hover {
+        //   animation: rotateArrowRight 0.3s ease forwards;
+        // }
+        &:hover {
+          cursor: pointer;
+          color: $border-color-dark;
+        }
+        &::after,
+        &::before {
+          position: absolute;
+          content: '';
+          width: 12px;
+          height: 12px;
+          border: 0 solid currentColor;
+          border-width: 0px 1.5px 1.5px 0px;
+          transform-origin: 75% -50%;
+          transform: rotate(45deg);
+        }
+        &::before {
+          top: 6px;
+          left: 6px;
+        }
+      }
+      .next-clear-icon {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        width: 26px;
+        height: 26px;
+        border: 1px solid red;
+        border-radius: 15px;
+        &::before,
+        &::after {
+          position: absolute;
+          left: 0;
+          top: 0;
+          content: '';
+          width: 26px;
+          height: 1px;
+          background-color: red;
+        }
+        &::before {
+          top: 50%;
+          transform: rotate(45deg);
+        }
+        &::after {
+          top: 50%;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    &-input {
+      flex: auto;
+      line-height: inherit;
+      font-size: 1.1em;
+      margin: 0 0 0 6px;
+      height: auto;
+      border: 0;
+      padding: 0;
+      outline: none;
+    }
+  }
+}
+
+.options-container {
+  .option-item {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    line-height: 42px;
+    &:first-child {
+      margin-top: 4px;
+    }
+    &:last-child {
+      margin-bottom: 4px;
+    }
+    &:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+    &:hover > .icon-clear {
+      visibility: visible;
+    }
+    button {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      outline: none;
+      align-self: center;
+      &.prev-checkbox-btn {
+        position: relative;
+        width: 28px;
+        height: 28px;
+        border-radius: 28px;
+        border: 1px solid green;
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: '';
+          width: 16px;
+          height: 10px;
+          background-color: red;
+          background-color: transparent;
+          border-left: 1px solid red;
+          border-bottom: 1px solid red;
+          transform: translate(4px, 4px) rotate(-50deg);
+        }
+      }
+      .next-clear-icon {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        width: 26px;
+        height: 26px;
+        border: 1px solid red;
+        border-radius: 15px;
+        &::before,
+        &::after {
+          position: absolute;
+          left: 0;
+          top: 0;
+          content: '';
+          width: 26px;
+          height: 1px;
+          background-color: red;
+        }
+        &::before {
+          top: 50%;
+          transform: rotate(45deg);
+        }
+        &::after {
+          top: 50%;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    &-text {
+      display: inline-block;
+      margin: 4px 16px;
+      border-radius: 2px;
+      border: 1px solid transparent;
+      line-height: 1.571;
+      padding: 4px 11px;
+      flex: auto;
+      text-align: left;
+      &.input {
+        transition: all 0.2s;
+        height: auto;
+        border-color: #40a9ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+      }
+      input {
+        flex: auto;
+        line-height: 1.571;
+        font-size: 1em;
+        margin: 0;
+        height: auto;
+        border: 0;
+        padding: 0;
+        outline: none;
+      }
+    }
+  }
+}
+@keyframes rotateArrowDown {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+
+@keyframes rotateArrowRight {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-90deg);
+  }
+}
