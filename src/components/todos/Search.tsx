@@ -12,6 +12,11 @@ const Todo = () => {
     options: [],
   } as IToDo);
 
+  const [filterState, setFilter] = React.useState({
+    clearAll: false,
+    filterStatus: '', // complete or active or ''
+  });
+
   const handleOptionChange = (index: number, item: IToDoItem) => {
     const options = state.options;
     options[index] = item;
@@ -20,10 +25,34 @@ const Todo = () => {
       options: [...options],
     });
   };
+  const handleOnDelete = (index: number) => {
+    const options = [...state.options];
+    options.splice(index, 1);
+    const newOptions = options.reduce((arr: Array<IToDoItem>, current) => {
+      arr.push(current);
+      return arr;
+    }, []);
+    setState({
+      ...state,
+      options: newOptions,
+    });
+  };
+  console.log('state.options: ', state.options);
   const arrowCls = c('prev-arrow-icon', {
     Open: state.isOpen,
     Closed: !state.isOpen,
   });
+
+  const filterOptions = state.options
+    .filter(item => {
+      if (filterState.clearAll) {
+        return false;
+      }
+      if (filterState.filterStatus) {
+        return item.status === filterState.filterStatus
+      }
+      return true;
+    })
   return (
     <div className="todo-container">
       <div className="todo-header">
@@ -64,14 +93,53 @@ const Todo = () => {
         </button>
       </div>
       <div className="options-container">
-        {state.options.map((props, index) => (
+        {filterOptions.map((props, index) => (
           <OptionItem
             {...props}
+            key={index}
             onChange={(item) => {
               handleOptionChange(index, item);
             }}
+            onDelete={() => {
+              handleOnDelete(index);
+            }}
           />
         ))}
+      </div>
+      <div style={{ padding: 8 }}>
+        <button
+          onClick={() => {
+            setFilter({
+              ...filterState,
+              filterStatus:
+                filterState.filterStatus === 'complete' ? '' : 'complete',
+            });
+          }}
+        >
+          show complete
+        </button>
+        <button
+          style={{ margin: 8 }}
+          onClick={() => {
+            setFilter({
+              ...filterState,
+              filterStatus:
+                filterState.filterStatus === 'active' ? '' : 'active',
+            });
+          }}
+        >
+          show active
+        </button>
+        <button
+          onClick={() => {
+            setFilter({
+              ...filterState,
+              clearAll: !filterState.clearAll,
+            });
+          }}
+        >
+          clear all
+        </button>
       </div>
     </div>
   );

@@ -136,7 +136,6 @@ $border-color-dark: rgba(0, 0, 0, 0.9);
           content: '';
           width: 16px;
           height: 10px;
-          background-color: red;
           background-color: transparent;
           border-left: 1px solid red;
           border-bottom: 1px solid red;
@@ -178,16 +177,17 @@ $border-color-dark: rgba(0, 0, 0, 0.9);
       border: 1px solid transparent;
       line-height: 1.571;
       padding: 4px 11px;
-      flex: auto;
+      flex: 1;
       text-align: left;
-      &.input {
+
+      &.editable {
         transition: all 0.2s;
         height: auto;
         border-color: #40a9ff;
         box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
       }
       input {
-        flex: auto;
+        flex: 1;
         line-height: 1.571;
         font-size: 1em;
         margin: 0;
@@ -195,6 +195,24 @@ $border-color-dark: rgba(0, 0, 0, 0.9);
         border: 0;
         padding: 0;
         outline: none;
+      }
+    }
+    &.option-item-active {
+      .option-item-text {
+        text-decoration-line: none;
+        &:hover {
+          border-color: #40a9ff;
+        }
+      }
+    }
+    &.option-item-complete {
+      .option-item-text {
+        text-decoration-line: line-through;
+      }
+      .prev-checkbox-btn {
+        &::after {
+          border-color: green;
+        }
       }
     }
   }

@@ -4,6 +4,7 @@ export interface IToDoItem {
   value: string;
   key: number;
   onChange?: (item: IToDoItem) => void;
+  onDelete?: () => void;
 }
 export interface IToDo {
   value: string;
