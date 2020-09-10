@@ -1,15 +1,17 @@
-import React from 'react';
-
 const Obj = {
   a: 1,
-}
+};
 
-type OperationList = {
+export type OperationList = {
   typeof: typeof Obj;
   keyof: keyof typeof Obj;
-  b: string
-}
+  b: string;
+};
 
-const Example = () => {
-  return <div>operation</div>
-}
+const aa: OperationList = {
+  typeof: { a: 12 },
+  keyof: 'a',
+  b: '123'
+};
+
+console.log('aa: ', aa);
